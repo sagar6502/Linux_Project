@@ -1,0 +1,41 @@
+theia@theia-sagarsunar20:/home/project$ touch rx_poc.log
+theia@theia-sagarsunar20:/home/project$ echo -e "year\tmonth\tday\thour\tobs_tmp\tfc_temp">rx_poc.log
+theia@theia-sagarsunar20:/home/project$ touch rx_poc.sh
+theia@theia-sagarsunar20:/home/project$ chmod u+x rx_poc.sh
+\theia@theia-sagarsunar20:/home/project$ weather_report=raw_data_$(date +%Y%m%d)
+theia@theia-sagarsunar20:/home/project$ city=Bangalore
+theia@theia-sagarsunar20:/home/project$ curl wttr.in/$city --output $weather_report
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  9189  100  9189    0     0  10489      0 --:--:-- --:--:-- --:--:-- 10477
+theia@theia-sagarsunar20:/home/project$ echo "There are    too    many spaces in this    sentence." | tr -s " "
+There are too many spaces in this sentence.
+theia@theia-sagarsunar20:/home/project$ echo " Never start or end a sentence with a space. " | xargs 
+Never start or end a sentence with a space.
+theia@theia-sagarsunar20:/home/project$ echo ".sdrawkcab saw ecnetnes sihT" | revThis sentence was backwards.
+theia@theia-sagarsunar20:/home/project$ # print the last field of the string
+theia@theia-sagarsunar20:/home/project$ echo "three two one" | rev | cut -d " " -f 1 | rev
+one
+theia@theia-sagarsunar20:/home/project$ echo "three two one " | rev | cut -d " " -f 1 | rev
+
+
+theia@theia-sagarsunar20:/home/project$ echo "three two one " | xargs | rev | cut -d " " -f 1 | rev
+one
+theia@theia-sagarsunar20:/home/project$ 
+theia@theia-sagarsunar20:/home/project$ grep °C $weather_report > temperatures.txt
+theia@theia-sagarsunar20:/home/project$ obs_tmp=$(head -1 temperatures.txt | tr -s " " | xargs | rev | cut -d " " -f2 | rev)
+theia@theia-sagarsunar20:/home/project$ fc_temp=$(head -3 temperatures.txt | tail -1 | tr -s " " | xargs | cut -d "C" -f2 | rev | cut -d " " -f2 | rev)
+theia@theia-sagarsunar20:/home/project$ hour=$(TZ='Morocco/Casablanca' date -u +%H) 
+theia@theia-sagarsunar20:/home/project$ day=$(TZ='Morocco/Casablanca' date -u +%d) 
+theia@theia-sagarsunar20:/home/project$ month=$(TZ='Morocco/Casablanca' date +%m)theia@theia-sagarsunar20:/home/project$ year=$(TZ='Morocco/Casablanca' date +%Y)
+theia@theia-sagarsunar20:/home/project$ record=$(echo -e "$year\t$month\t$day\t$hour\t$obs_tmp\t$fc_temp")
+theia@theia-sagarsunar20:/home/project$ echo $record>>rx_poc.log
+theia@theia-sagarsunar20:/home/project$ $ date
+bash: $: command not found
+theia@theia-sagarsunar20:/home/project$ date
+Fri May 31 08:09:26 EDT 2024
+theia@theia-sagarsunar20:/home/project$ date -u
+Fri May 31 12:09:38 UTC 2024
+theia@theia-sagarsunar20:/home/project$ crontab -e
+no crontab for theia - using an empty one
+crontab: installing new crontab
